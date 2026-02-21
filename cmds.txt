@@ -1,0 +1,22 @@
+terraform init
+terraform fmt
+
+terraform plan
+terraform apply
+terraform apply -auto-approve
+
+terraform plan -out=plan2
+terraform applly plan2
+
+this creates a plan3 file :
+terraform plan -out=plan3
+terraform applly plan3
+
+terraform plan -destroy
+terraform destroy
+
+unset GITHUB_TOKEN && gh auth login -h github.com -p https -s delete_repo -w
+gh repo create
+gh repo delete
+gh repo list
+gh repo view xyz-repo --web
