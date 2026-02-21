@@ -1,0 +1,30 @@
+
+$ terraform state list -state=../tfstatefiles/terraform.tfstate
+github_branch.test
+github_repository.terraform_repo
+github_repository_file.readme
+random_id.random1
+
+$ terraform console -state=../tfstatefiles/terraform.tfstate
+> random_id.random1
+{
+  "b64_std" = "buw="
+  "b64_url" = "buw"
+  "byte_length" = 2
+  "dec" = "28396"
+  "hex" = "6eec"
+  "id" = "buw"
+  "keepers" = tomap(null) /* of string */
+  "prefix" = tostring(null)
+}
+> random_id.random1.dec
+"28396"
+> "mtc"
+"mtc"
+
+> "testname-${random_id.random1.dec}"
+"testname-28396"
+
+> "xyz-name-${random_id.random1.hex}"
+"xyz-name-6eec"
+>

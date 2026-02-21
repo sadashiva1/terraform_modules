@@ -7,7 +7,7 @@ terraform {
     github = {
       source  = "integrations/github"
       version = "~> 6.0"
-    #   export TF_VAR_github_token="ghp_xxxxxxxxxxxx"
+      #   export TF_VAR_github_token="ghp_xxxxxxxxxxxx"
     }
   }
 }
