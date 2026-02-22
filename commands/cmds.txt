@@ -35,6 +35,16 @@ terraform console -state=../tfstatefiles/terraform.tfstate
 terraform output
 terraform output -json reponames
 terraform output -json
+==========================x==========================
+export TF_VAR_varsource="envar"
+
+terraform plan -var 'varsource=cli'
+Changes to Outputs:
+  ~ varsource  = "prod.auto.tfvars" -> "cli"
+
+prod.auto.tfvars -> dev.auto.tfvars -> variables.tfvars -> envar
+variable not defined - it will ask for input in cli
+
 
 ===========================x=======================
 unset GITHUB_TOKEN && gh auth login -h github.com -p https -s delete_repo -w

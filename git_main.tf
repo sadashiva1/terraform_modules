@@ -1,23 +1,21 @@
 resource "random_id" "random1" {
   byte_length = 2
-  count       = 2
+  # count       = 2
+  count = var.repo_count
 }
-
-
 resource "github_repository" "terraform_repo" {
   # name        = "terraform_modules1"
   # name        = "terraform_modules1-${random_id.random1[1].dec}"
   # name        = "terraform_modules1-${random_id.random1[1].dec}"
-  count       = 2
+  count       = var.repo_count
   name        = "terraform_modules1-${random_id.random1[count.index].dec}"
   description = "Decription of the repository- updated via terraform code"
   visibility  = "private"
   auto_init   = true
   #   private     = false
 }
-
 resource "github_repository_file" "readme" {
-  count      = 2
+  count      = var.repo_count
   repository = github_repository.terraform_repo[count.index].name
   # branch              = "test_branch"
   branch              = "main"
@@ -25,9 +23,8 @@ resource "github_repository_file" "readme" {
   content             = "# Terraform Repository - for infra dev team"
   overwrite_on_create = true
 }
-
 resource "github_repository_file" "index" {
-  count      = 2
+  count      = var.repo_count
   repository = github_repository.terraform_repo[count.index].name
   # branch              = "test_branch"
   branch              = "main"
@@ -36,7 +33,8 @@ resource "github_repository_file" "index" {
   overwrite_on_create = true
 }
 
-output "names" {
+output "clone-urls" {
+
   # value       = github_repository.terraform_repo[*].name
   value = { for i in github_repository.terraform_repo[*] : i.name => i.http_clone_url }
   # [for i in github_repository.terraform_repo[*] : "${i.name} : ${i.http_clone_url}" ]
@@ -44,6 +42,11 @@ output "names" {
   description = "REpository names"
   sensitive   = false #hide from terminal- but visible in tfstate files
 }
+
+# output "varsource" {
+#   value = var.varsource
+#   description = "Source used to define"
+# }
 
 # resource "github_branch" "test" {
 #   repository = github_repository.terraform_repo.name
