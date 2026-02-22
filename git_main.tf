@@ -38,11 +38,11 @@ resource "github_repository_file" "index" {
 
 output "names" {
   # value       = github_repository.terraform_repo[*].name
-  value =  { for i in github_repository.terraform_repo[*]: i.name => i.http_clone_url }
+  value = { for i in github_repository.terraform_repo[*] : i.name => i.http_clone_url }
   # [for i in github_repository.terraform_repo[*] : "${i.name} : ${i.http_clone_url}" ]
   # [for i in github_repository.terraform_repo[*] : "${i.name} : ${i.http_clone_url}" ][0]
   description = "REpository names"
-  sensitive = false #hide from terminal- but visible in tfstate files
+  sensitive   = false #hide from terminal- but visible in tfstate files
 }
 
 # resource "github_branch" "test" {
