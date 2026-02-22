@@ -18,6 +18,7 @@ terraform applly plan3
 terraform plan -destroy
 terraform destroy
 
+=====================x==================
 
 terraform state list -state=../tfstatefiles/terraform.tfstate
 or
@@ -28,6 +29,12 @@ terraform state list
 
 terraform state show github_repository.terraform_repo
 
+terraform console
+terraform console -state=../tfstatefiles/terraform.tfstate
+ 
+terraform output
+terraform output -json reponames
+terraform output -json
 
 ===========================x=======================
 unset GITHUB_TOKEN && gh auth login -h github.com -p https -s delete_repo -w
