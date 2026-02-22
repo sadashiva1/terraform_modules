@@ -4,6 +4,14 @@ terraform fmt
 terraform plan
 terraform apply
 terraform apply -auto-approve
+terraform plan -refresh-only
+--Note: Objects have changed outside of Terraform
+
+------------------------------------dangerous
+terraform state rm -dry-run 'github_repository.terraform_repo[0]'
+Would remove github_repository.terraform_repo[0]
+terraform apply -refresh-only
+-----------------------------------------dangerous
 
 terraform show
 terraform show -json | jq
@@ -45,6 +53,11 @@ Changes to Outputs:
 prod.auto.tfvars -> dev.auto.tfvars -> variables.tfvars -> envar
 variable not defined - it will ask for input in cli
 
+> contains(["dev","text","staging","prod"],"prod")
+true
+> contains(["dev","text","staging","prod"],"xyz")
+false
+>
 
 ===========================x=======================
 unset GITHUB_TOKEN && gh auth login -h github.com -p https -s delete_repo -w

@@ -1,2 +1,4 @@
-repo_count = 2
+repo_count = 1
 # varsource = "terraform.tfvars"
+env   = "dev"
+repos = ["dev", "prod"]
