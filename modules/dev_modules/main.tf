@@ -21,7 +21,8 @@ resource "github_repository_file" "readmee" {
   repository = github_repository.test_rep[each.key].name
   branch     = "main"
   file       = "README.md"
-  content = templatefile("templates/readm.tftpl", {
+  content = templatefile("${path.module}/templates/readm.tftpl", { 
+    #path.module(current-module) path.cwd(till repo) path.root(. root)
     env  = var.env
     lang = each.value.lang
     repo = each.key
