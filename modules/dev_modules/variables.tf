@@ -22,6 +22,26 @@ variable "env" {
 variable "repos" {
   type        = set(string)
   description = "Repositories"
+  validation {
+    condition     = length(var.repos) <= var.repo_max
+    error_message = "Number of repositories exceeds the maximum allowed (${var.repo_max})"
+  }
+}
+
+variable "repo_map" {
+  type        = map(map(string))
+  description = "map of map values"
+}
+
+variable "repo_max" {
+  description = "Maximum number of repositories allowed"
+  type        = number
+  default     = 2
+  validation {
+    condition     = var.repo_max <= 6
+    error_message = "Deploying more number of repos is not allowed"
+  }
+
 }
 # variable "visibility" {
 #   type = string

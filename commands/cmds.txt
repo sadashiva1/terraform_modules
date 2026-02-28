@@ -1,4 +1,5 @@
 terraform init
+terraform init -reconfigure
 terraform fmt
 
 terraform plan
@@ -43,6 +44,8 @@ terraform console -state=../tfstatefiles/terraform.tfstate
 terraform output
 terraform output -json reponames
 terraform output -json
+terraform output -state="../tfstatefiles/terraform.tfstate"
+
 ==========================x==========================
 export TF_VAR_varsource="envar"
 

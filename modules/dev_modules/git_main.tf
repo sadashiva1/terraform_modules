@@ -1,13 +1,24 @@
-# for-eachloop
-resource "github_repository" "my_tf_repos" {
-  # for_each    = toset(["dev","prod"])
-  for_each    = var.repos
-  name        = "my-tf-repo-${each.key}"
-  description = "this repo created using for each loop terraform- key:${each.key} value:${each.value}"
-  visibility  = "private"
-  auto_init   = true
-
-}
+# # for-eachloop
+# resource "github_repository" "my_tf_repos" {
+#   # for_each    = toset(["dev","prod"])
+#   for_each    = var.repos
+#   name        = "my-tf-repo-${each.key}"
+#   description = "this repo created using for each loop terraform- key:${each.key} value:${each.value}"
+#   visibility  = "private"
+#   auto_init   = true
+#   depends_on = [ github_repository_file.readme ]
+#   provisioner "local-exec" {
+#     command = "ls" 
+#   }
+# }
+# resource "github_repository_file" "readme" {
+#   for_each   = var.repos
+#   repository = github_repository.my_tf_repos[each.key].name
+#   branch     = "main"
+#   file       = "README.md"
+#   content    = "# Terraform Repository - for infra dev team - ${each.key}"
+#   overwrite_on_create = true
+# }
 
 ##==================x=========================
 # resource "random_id" "random1" {
